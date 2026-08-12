@@ -630,8 +630,10 @@ const sun = document.getElementById('icon-sun');
 
 function paintToggle(){
   const dark = root.dataset.theme === 'dark';
-  moon.hidden = dark;
-  sun.hidden = !dark;
+  // 這兩個是 SVG 元素，.hidden 這個 IDL 屬性只存在於 HTMLElement，
+  // 直接指派不會反映到實際屬性上，必須用 toggleAttribute。
+  moon.toggleAttribute('hidden', dark);
+  sun.toggleAttribute('hidden', !dark);
   toggle.setAttribute('aria-pressed', String(dark));
   toggle.setAttribute('aria-label', dark ? '切換亮色模式' : '切換深色模式');
 }
