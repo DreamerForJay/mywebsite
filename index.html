@@ -101,6 +101,9 @@ body{
   transition:background .35s ease,color .35s ease;
 }
 img,svg{max-width:100%;display:block}
+/* 必須放在上一行之後：作者樣式的 svg{display:block} 會蓋掉瀏覽器預設的 [hidden]，
+   導致主題切換按鈕的月亮與太陽圖示同時出現 */
+[hidden]{display:none !important}
 a{color:inherit}
 h1,h2,h3{text-wrap:balance;margin:0;font-weight:900;letter-spacing:-.03em}
 p{margin:0}
