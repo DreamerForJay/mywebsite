@@ -277,6 +277,37 @@ section{scroll-margin-top:88px}
 .social svg{width:19px;height:19px;fill:currentColor;stroke:none;flex:none}
 .social svg.line{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
+/* ---------- QR dialog ---------- */
+#qr-modal{
+  border:0;padding:0;background:transparent;color:var(--ink);
+  max-width:min(92vw,380px);
+}
+#qr-modal::backdrop{background:rgba(12,9,23,.55);backdrop-filter:blur(4px)}
+.qr-panel{
+  position:relative;padding:34px 30px 30px;text-align:center;
+  border-radius:24px;border:1px solid var(--line);
+  background:var(--surface-solid);box-shadow:0 24px 70px rgba(20,10,60,.28);
+}
+.qr-panel h2{font-size:21px;line-height:1.35}
+.qr-panel p{margin-top:10px;color:var(--muted);font-size:14.5px}
+.qr-code{
+  width:min(232px,62vw);margin:22px auto 20px;padding:12px;
+  background:#fff;border-radius:16px;border:1px solid var(--line);
+}
+.qr-code svg{width:100%;height:auto}
+.qr-link{
+  display:inline-flex;align-items:center;min-height:44px;padding:0 6px;
+  font-weight:700;font-size:15px;color:var(--accent);text-decoration:none;
+}
+.qr-link:hover{text-decoration:underline}
+.qr-close{
+  position:absolute;top:10px;right:10px;width:44px;height:44px;
+  display:grid;place-items:center;border:0;border-radius:50%;
+  background:transparent;color:var(--muted);cursor:pointer;
+}
+.qr-close:hover{color:var(--ink);background:var(--accent-soft)}
+.qr-close svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round}
+
 /* ---------- footer ---------- */
 .site-foot{border-top:1px solid var(--line);padding:26px 0 34px}
 .foot-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--faint);text-transform:uppercase}
@@ -336,6 +367,9 @@ section{scroll-margin-top:88px}
       <a class="icon-btn" href="https://www.instagram.com/_jay_0919" rel="noopener noreferrer" target="_blank" aria-label="Instagram">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
       </a>
+      <button class="icon-btn" id="qr-open" type="button" aria-label="顯示 QR Code，掃描後可看到所有聯絡方式">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><path d="M14 14h3v3h-3zM20.6 14v3M14 20.6h3M20.6 20.6v.01"/></svg>
+      </button>
       <span class="divider" aria-hidden="true"></span>
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="切換深色模式" aria-pressed="false">
         <svg id="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8z"/></svg>
@@ -622,6 +656,20 @@ section{scroll-margin-top:88px}
 
 </main>
 
+<dialog id="qr-modal" aria-labelledby="qr-title">
+  <div class="qr-panel">
+    <button class="qr-close" id="qr-close" type="button" aria-label="關閉">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <h2 id="qr-title">掃描看所有聯絡方式</h2>
+    <p>用手機相機掃描，或直接點下方連結。</p>
+    <div class="qr-code">
+      <svg viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="dinq.me/clyang 的 QR Code"><rect width="29" height="29" fill="#fff"/><path d="M2 2h7v1h-7zM10 2h2v1h-2zM13 2h2v1h-2zM16 2h1v1h-1zM20 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h4v1h-4zM15 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM26 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h2v1h-2zM13 4h1v1h-1zM15 4h1v1h-1zM18 4h1v1h-1zM20 4h1v1h-1zM22 4h3v1h-3zM26 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM11 5h1v1h-1zM14 5h2v1h-2zM18 5h1v1h-1zM20 5h1v1h-1zM22 5h3v1h-3zM26 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h2v1h-2zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h3v1h-3zM26 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM20 7h1v1h-1zM26 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h7v1h-7zM12 9h1v1h-1zM15 9h1v1h-1zM17 9h2v1h-2zM2 10h1v1h-1zM5 10h6v1h-6zM16 10h1v1h-1zM18 10h2v1h-2zM22 10h1v1h-1zM24 10h3v1h-3zM2 11h1v1h-1zM7 11h1v1h-1zM10 11h3v1h-3zM14 11h1v1h-1zM16 11h3v1h-3zM21 11h5v1h-5zM2 12h7v1h-7zM10 12h1v1h-1zM14 12h1v1h-1zM16 12h4v1h-4zM22 12h2v1h-2zM26 12h1v1h-1zM3 13h1v1h-1zM6 13h2v1h-2zM10 13h2v1h-2zM13 13h1v1h-1zM16 13h1v1h-1zM20 13h2v1h-2zM23 13h4v1h-4zM7 14h4v1h-4zM13 14h2v1h-2zM17 14h2v1h-2zM20 14h2v1h-2zM26 14h1v1h-1zM2 15h2v1h-2zM9 15h2v1h-2zM12 15h1v1h-1zM16 15h3v1h-3zM22 15h1v1h-1zM25 15h1v1h-1zM2 16h3v1h-3zM6 16h4v1h-4zM12 16h3v1h-3zM16 16h2v1h-2zM19 16h1v1h-1zM22 16h5v1h-5zM2 17h1v1h-1zM5 17h3v1h-3zM10 17h4v1h-4zM16 17h1v1h-1zM21 17h1v1h-1zM23 17h2v1h-2zM26 17h1v1h-1zM2 18h1v1h-1zM5 18h1v1h-1zM8 18h2v1h-2zM12 18h1v1h-1zM15 18h1v1h-1zM18 18h5v1h-5zM24 18h2v1h-2zM10 19h5v1h-5zM18 19h1v1h-1zM22 19h1v1h-1zM24 19h2v1h-2zM2 20h7v1h-7zM10 20h4v1h-4zM18 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM26 20h1v1h-1zM2 21h1v1h-1zM8 21h1v1h-1zM10 21h3v1h-3zM14 21h2v1h-2zM17 21h2v1h-2zM22 21h1v1h-1zM2 22h1v1h-1zM4 22h3v1h-3zM8 22h1v1h-1zM10 22h2v1h-2zM14 22h2v1h-2zM17 22h6v1h-6zM25 22h2v1h-2zM2 23h1v1h-1zM4 23h3v1h-3zM8 23h1v1h-1zM10 23h3v1h-3zM16 23h1v1h-1zM19 23h2v1h-2zM25 23h2v1h-2zM2 24h1v1h-1zM4 24h3v1h-3zM8 24h1v1h-1zM14 24h1v1h-1zM16 24h1v1h-1zM18 24h1v1h-1zM22 24h5v1h-5zM2 25h1v1h-1zM8 25h1v1h-1zM12 25h1v1h-1zM19 25h4v1h-4zM24 25h3v1h-3zM2 26h7v1h-7zM10 26h1v1h-1zM12 26h1v1h-1zM14 26h5v1h-5zM20 26h1v1h-1zM23 26h1v1h-1zM26 26h1v1h-1z" fill="#000"/></svg>
+    </div>
+    <a class="qr-link" href="https://dinq.me/clyang" rel="noopener noreferrer" target="_blank">dinq.me/clyang ↗</a>
+  </div>
+</dialog>
+
 <footer class="site-foot">
   <div class="wrap foot-inner">
     <span>© <span id="year"></span> 楊杰倫 Chieh-Lun Yang</span>
@@ -662,6 +710,15 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
   if (saved) return;
   root.dataset.theme = e.matches ? 'dark' : 'light';
   paintToggle();
+});
+
+/* QR Code 彈窗 */
+const qrModal = document.getElementById('qr-modal');
+document.getElementById('qr-open').addEventListener('click', () => qrModal.showModal());
+document.getElementById('qr-close').addEventListener('click', () => qrModal.close());
+// 點背景關閉：<dialog> 的點擊目標是自己時，代表點在 backdrop 上
+qrModal.addEventListener('click', (e) => {
+  if (e.target === qrModal) qrModal.close();
 });
 
 /* 捲動顯示 */
