@@ -1,0 +1,11 @@
+# 個人資料：履歷 PDF 含手機號碼與通訊地址，不要推上公開 repo
+*.pdf
+
+# 建站用的 skill 套件與工作說明，不屬於網站本身
+web-quick-builder/
+CLAUDE.md
+
+# 系統檔
+Thumbs.db
+.DS_Store
+desktop.ini
